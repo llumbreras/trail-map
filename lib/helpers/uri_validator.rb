@@ -28,6 +28,9 @@ class URIValidator
   def head_request_ok?(uri)
     response = RestClient.get(uri)
     return response.code == 200
+  rescue RestClient::ResourceNotFound => error
+    puts error
+    return false
   rescue SocketError, Errno::ECONNREFUSED
     return false
   end
@@ -35,6 +38,9 @@ class URIValidator
   def get_request_ok?(uri)
     response = RestClient.get(uri)
     return response.ok?
+  rescue RestClient::ResourceNotFound => error
+    puts error
+    return false
   rescue SocketError, Errno::ECONNREFUSED
     return false
   end
