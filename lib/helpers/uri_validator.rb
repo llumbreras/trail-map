@@ -1,4 +1,4 @@
-require 'httparty'
+require 'rest-client'
 
 class URIValidator
   def initialize(file_name)
@@ -26,14 +26,14 @@ class URIValidator
   end
 
   def head_request_ok?(uri)
-    response = HTTParty.head(uri)
+    response = RestClient.get(uri)
     return response.code == 200
   rescue SocketError, Errno::ECONNREFUSED
     return false
   end
 
   def get_request_ok?(uri)
-    response = HTTParty.get(uri)
+    response = RestClient.get(uri)
     return response.ok?
   rescue SocketError, Errno::ECONNREFUSED
     return false

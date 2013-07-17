@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe URIValidator, '#run' do
   it 'outputs a dot for each valid URI' do
-    stub_request(:head, 'http://example.org')
-    stub_request(:head, 'http://example.com')
+    stub_request(:get, 'http://example.org')
+    stub_request(:get, 'http://example.com')
     file_name = 'good_json_file.json'
+
     URIExtractor.stubs(:new).with(file_name).returns %w(
       http://example.org
       http://example.com

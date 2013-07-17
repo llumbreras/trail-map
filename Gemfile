@@ -4,7 +4,7 @@ ruby '2.0.0'
 
 gem 'bourne'
 gem 'colored'
-gem 'httparty'
+gem 'rest-client'
 gem 'json'
 gem 'json-schema'
 gem 'mocha', require: false
